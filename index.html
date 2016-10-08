@@ -11,20 +11,14 @@
     <title>Skyscanner+</title>
 
     <link rel="stylesheet" href="css/jRoll.css">
-    <link href="carousel.css" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
 
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="js/ie-emulation-modes-warning.js"></script>
+    <script src="js/smartana.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -107,9 +101,12 @@
     var i = 1;
     var qIndex = 'q' + i, aIndex = 'a' + i;
       function enableAnswer() {
-        $.post('https://skyscannerplustech.herokuapp.com/hello', null, function() {
-                console.log("works on every enter");
-            });
+        // $.post('https://skyscannerplus.herokuapp.com/hello', null, function() {
+        //         console.log("works on every enter");
+        //     });
+
+        makeCorsRequest();
+
         qIndex = 'q' + i;
         aIndex = 'a' + i;
         if (i > 3) {
@@ -194,7 +191,7 @@
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
-    background: url(polina.jpg) no-repeat;
+    background: url(bkrplaceholder.jpg) no-repeat;
     background-size: cover;
     }
     </style>
@@ -207,7 +204,5 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
     <script src="js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
