@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+/*!jRoll - https://fitsbach.github.io/jRoll/
+ *Version - 0.1.6
+ *Licensed unter the GNU General Public License - gnu.org/licenses/gpl.html
+ *
+ *Copyright (c) 2016 Jimmy Fitzback
+ */
+@keyframes gyroscopeIn{
+	0% {transform-origin: 50% 50% 0px;transform: perspective(150px) rotateY(0deg) rotateZ(0deg);}
+	50% {transform-origin: 50% 50% 0px;transform: perspective(150px) rotateY(180deg) rotateZ(360deg);}
+	100% {transform-origin: 50% 50% 0px;transform: perspective(150px) rotateY(360deg) rotateZ(0deg);}
+}
+@keyframes gyroscopeOut{
+	0% {transform-origin: 50% 50% 0px;transform: perspective(150px) rotateX(0deg);}
+	100% {transform-origin: 50% 50% 0px;transform: perspective(150px) rotateX(360deg);}
+}
+@keyframes gyroscope3D{
+	0% {transform: rotateZ(0deg);}
+	100% {transform: rotateZ(360deg);}
+}
+svg{
+   position: absolute;
+}

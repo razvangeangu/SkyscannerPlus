@@ -10,6 +10,8 @@
 
     <title>Skyscanner+</title>
 
+    <link rel="stylesheet" href="css/jRoll.css">
+
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -31,6 +33,8 @@
   </head>
 
   <body>
+
+    <script type="text/javascript" src="js/jRoll.js"></script>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -59,6 +63,10 @@
         <h1><img src="img/logo.png" width="50%"/></h1>
         <p class="lead">Looking for an awesome destination? Just let us know what you want <br> e.g.: I want to travel from London to Barcelona</p>
       </div>
+      <div id="gyroscope" style="display: none; width: 96px; height: 96px; overflow: hidden; animation: gyroscope3D 2s linear 0s infinite;">
+    	 <svg height="96" width="96" style="animation: gyroscopeIn 2s linear 0s infinite;z-index:1;"><circle cx="48" cy="48" r="28" stroke="#003056" stroke-width="4" fill="transparent"></circle></svg>
+    	 <svg height="96" width="96" style="animation: gyroscopeOut 2s linear 0s infinite;z-index:2;"><circle cx="48" cy="48" r="32" stroke="#04518C" stroke-width="4" fill="transparent"></circle></svg>
+      </div>
 
       <ul id="ulFather" class="list-group">
         <li id="q1" class="list-group-item" style="display: none;">Cras justo odio</li>
@@ -71,9 +79,10 @@
 
       <div class="text centre">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Your answer...">
+            <input id="questionText" type="text" class="form-control" placeholder="Your answer...">
             <span class="input-group-btn">
-              <button id="myButton" class="btn btn-default" type="button" onclick="enableAnswer()">Go!</button>
+              <button id="myButton" class="btn btn-default" type="button" onclick="enableAnswer()" onclick="loading()">Go!</button>
+              <!-- <input onkeypress="enableAnswer()"> -->
             </span>
           </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
@@ -83,6 +92,14 @@
 
     <!-- Nuta scrie intre liniile acestea -->
     <script>
+    document.getElementById("questionText")
+      .addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode == 13) {
+            document.getElementById("myButton").click();
+        }
+    });
+
     var i = 1;
     var qIndex = 'q' + i, aIndex = 'a' + i;
       function enableAnswer() {
@@ -98,6 +115,7 @@
         document.getElementById(aIndex).style.display = "block";
         document.getElementById(aIndex).style.background = "#f1f1f1";
         document.getElementById(aIndex).style.color= "#5be3ee";
+        //document.getElementById("gyroscope").style.display="absolute"; 
         i += 1;
             }
     </script>
