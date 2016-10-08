@@ -60,7 +60,7 @@
         <p class="lead">Looking for an awesome destination? Just let us know what you want <br> e.g.: I want to travel from London to Barcelona</p>
       </div>
 
-      <ul class="list-group">
+      <ul id="ulFather" class="list-group">
         <li id="q1" class="list-group-item" style="display: none;">Cras justo odio</li>
         <li id="a1" class="list-group-item" style="display: none;">Dapibus ac facilisis in</li>
         <li id="q2" class="list-group-item" style="display: none;">Cras justo odio</li>
@@ -73,7 +73,7 @@
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Your answer...">
             <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Go!</button>
+              <button id="myButton" class="btn btn-default" type="button" onclick="enableAnswer()">Go!</button>
             </span>
           </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
@@ -82,8 +82,20 @@
     </div><!-- /.container -->
 
     <!-- Nuta scrie intre liniile acestea -->
-
-
+    <script>
+    var i = 1;
+    var qIndex = 'q' + i, aIndex = 'a' + i;
+      function enableAnswer() {
+        qIndex = 'q' + i;
+        aIndex = 'a' + i;
+      
+        document.getElementById(qIndex).style.display = "block";
+        document.getElementById(aIndex).style.display = "block";
+        document.getElementById(aIndex).style.background = "#f1f1f1";
+        document.getElementById(aIndex).style.color= "#5be3ee";
+        i += 1;
+            }
+    </script>
 
 
     <!-- Nuta scrie intre liniile acestea -->
