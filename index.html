@@ -88,8 +88,13 @@
       function enableAnswer() {
         qIndex = 'q' + i;
         aIndex = 'a' + i;
-      
+        if (i > 3) {
+            document.getElementById("q1").innerHTML = document.getElementById("q2").innerHTML;
+            document.getElementById("q2").innerHTML = document.getElementById("q3").innerHTML;
+            i = 3;
+        }
         document.getElementById(qIndex).style.display = "block";
+        document.getElementById(qIndex).innerHTML = i;
         document.getElementById(aIndex).style.display = "block";
         document.getElementById(aIndex).style.background = "#f1f1f1";
         document.getElementById(aIndex).style.color= "#5be3ee";
