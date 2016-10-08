@@ -20,6 +20,10 @@
 
     <script src="js/smartana.js"></script>
 
+    <style>
+    .form-control::-webkit-input-placeholder { color: white; }
+    </style>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -77,9 +81,6 @@
       <div class="text centre">
         <center><div class="input-group col-xs-4">
             <input id="questionText" type="text" class="form-control inputlg"  placeholder="Your answer..." style="z-index: 1; position: relative; padding-right: 0; padding-left: 0; border: none; border-radius: 0; font-size: 1.2em; background: none; box-shadow: none !important; resize: none; color: #fff;">
-            <style>
-            .form-control::-webkit-input-placeholder { color: white; }
-            </style>
             <span class="input-group-btn">
               <button id="myButton" class="btn btn-default" type="button" onclick="enableAnswer()" onclick="loading()">Go!</button>
               <!-- <input onkeypress="enableAnswer()"> -->
