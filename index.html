@@ -107,6 +107,9 @@
     var i = 1;
     var qIndex = 'q' + i, aIndex = 'a' + i;
       function enableAnswer() {
+        $.post('https://skyscannerplustech.herokuapp.com/hello', null, function() {
+                console.log("works on every enter");
+            });
         qIndex = 'q' + i;
         aIndex = 'a' + i;
         if (i > 3) {
@@ -169,7 +172,7 @@
       document.getElementById("result2").style.display = "block";
       document.getElementById("result3").style.display = "block";
     }
-    tbd();
+    // tbd();
     </script>
 
     <!-- video fundal -->
