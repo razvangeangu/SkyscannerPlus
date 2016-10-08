@@ -48,7 +48,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <!-- <li><a href="#contact">Contact</a></li> -->
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -57,7 +57,7 @@
     <div class="container">
 
       <div class="starter-template">
-        <h1><img src="img/logo.png" width="50%"/></h1>
+        <h1><img src="img/logo.png" width="40%"/></h1>
         <p class="lead" id="motto">Looking for an awesome destination? Just let us know what you want <br> e.g.: I want to travel from London to Barcelona</p>
       </div>
       <div id="gyroscope" style="display: none; width: 96px; height: 96px; overflow: hidden; animation: gyroscope3D 2s linear 0s infinite;">
@@ -75,8 +75,11 @@
       </ul>
 
       <div class="text centre">
-        <div class="input-group">
-            <input id="questionText" type="text" class="form-control" placeholder="Your answer...">
+        <center><div class="input-group col-xs-4">
+            <input id="questionText" type="text" class="form-control inputlg"  placeholder="Your answer..." style="z-index: 1; position: relative; padding-right: 0; padding-left: 0; border: none; border-radius: 0; font-size: 1.2em; background: none; box-shadow: none !important; resize: none; color: #fff;">
+            <style>
+            .form-control::-webkit-input-placeholder { color: white; }
+            </style>
             <span class="input-group-btn">
               <button id="myButton" class="btn btn-default" type="button" onclick="enableAnswer()" onclick="loading()">Go!</button>
               <!-- <input onkeypress="enableAnswer()"> -->
@@ -153,7 +156,7 @@
     </div>
 
 
-    
+
     <script>
       function tbd () {
       document.getElementById("q1").style.display = "none";
