@@ -35,6 +35,7 @@ function makeCorsRequest(aIndex) {
   xhr.onload = function() {
     var text = xhr.responseText;
     document.getElementById('a' + aIndex).innerHTML = text;
+    speak(text);
   };
 
   xhr.onerror = function() {
@@ -45,3 +46,49 @@ function makeCorsRequest(aIndex) {
 }
 
 // Synthesizer part -----------------------
+
+function speak(message) {
+  var msg = new SpeechSynthesisUtterance(message);
+  msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name == 'Samantha'; })[0];
+  speechSynthesis.speak(msg);
+}
+
+if (annyang) {
+
+  // Speech recognition with commands
+  var commands = {
+    // annyang will capture anything after a splat (*) and pass it to the function.
+    // e.g. saying "Show me Batman and Robin" is the same as calling showFlickr('Batman and Robin');
+    'show me *tag': showFlickr,
+
+    // A named variable is a one word variable, that can fit anywhere in your command.
+    // e.g. saying "calculate October stats" will call calculateStats('October');
+    'calculate :month stats': calculateStats,
+
+    // By defining a part of the following command as optional, annyang will respond to both:
+    // "say hello to my little friend" as well as "say hello friend"
+    'say hello (to my little) friend': greeting,
+
+    '*everything': writeToConsole
+  };
+
+  var showFlickr = function(tag) {
+    var url = 'http://api.flickr.com/services/rest/?tags='+tag;
+    $.getJSON(url);
+  }
+
+  var calculateStats = function(month) {
+    $('#stats').text('Statistics for '+month);
+  }
+
+  var greeting = function() {
+    $('#greeting').text('Hello!');
+  }
+
+  var writeToConsole = function(everything) {
+    console.log(everything);
+  }
+
+  // Start listening. You can call this here, or attach this call to an event, button, etc.
+  annyang.start();
+}
