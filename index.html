@@ -15,7 +15,8 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <script src="js/annyang.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.4.0/annyang.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
 
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
@@ -121,18 +122,19 @@
         makeCorsRequest(i);
         qIndex = 'q' + i;
         aIndex = 'a' + i;
+        var text = document.getElementById("questionText").value;
 
         if (i > 3) {
             document.getElementById("q1").innerHTML = document.getElementById("q2").innerHTML;
             document.getElementById("q2").innerHTML = document.getElementById("q3").innerHTML;
-            document.getElementById("q3").innerHTML = document.getElementById("questionText").value;
+            document.getElementById("q3").innerHTML = text;
 
             document.getElementById("a1").innerHTML = document.getElementById("a2").innerHTML;
             document.getElementById("a2").innerHTML = document.getElementById("a3").innerHTML;
             document.getElementById("questionText").value = "";
         } else {
             document.getElementById(qIndex).style.display = "block";
-            document.getElementById(qIndex).innerHTML = document.getElementById("questionText").value;
+            document.getElementById(qIndex).innerHTML = text;
             document.getElementById(aIndex).style.display = "block";
             document.getElementById(aIndex).style.background = "#f1f1f1";
             document.getElementById(aIndex).style.color= "#5be3ee";
@@ -170,34 +172,6 @@
         </div>
       </div>
     </div>
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
-
-    <script>
-    "use strict";
-    if (annyang) {
-      var hello = function() {
-        alert("it worked!!");
-      };
-
-      var getStarted = function() {
-        window.location.href = 'https://github.com/TalAter/annyang';
-      }
-      var commands = {
-        'hello (there)':        hello,
-      };
-      annyang.debug();
-      annyang.addCommands(commands);
-      annyang.setLanguage('en');
-      annyang.start();
-
-      // Define a stylesheet for KITT to use
-      SpeechKITT.setStylesheet('//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat.css');
-
-      // Render KITT's interface
-      SpeechKITT.vroom(); // SpeechKITT.render() does the same thing, but isn't as much fun!
-    }
-    </script>
 
     <script>
     function tbd() {
@@ -256,5 +230,36 @@
           <p class="navbar-text col-md-12 col-sm-12 col-xs-12" style="color: #34353e;">&copy; 2016 <b>SMARTANA</b> <br> All rights reserved | MIT License</p>
       </div>
     </nav>
+
+
+    <script>
+    if (annyang) {
+  	// Add our commands to annyang
+	  annyang.addCommands({
+	    'hello': function() { speak("Hello!"); }
+	  });
+
+	  annyang.addCommands({
+	    'tell me a joke ()': function() { console.log("it worked actually.."); speak("Have you ever tried to eat a clock? It is very time consuming!") }
+	  });
+
+	  annyang.debug();
+
+	  // Tell KITT to use annyang
+	  SpeechKITT.annyang();
+
+	  // Define a stylesheet for KITT to use
+	  SpeechKITT.setStylesheet('//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat.css');
+
+	  // Render KITT's interface
+	  SpeechKITT.vroom();
+
+	  annyang.addCallback('result', function(userSaid, commandText, phrases) {
+	  		document.getElementById("questionText").value = userSaid[0];
+	  		document.getElementById("myButton").click();
+	  		SpeechKITT.toggleRecognition();
+		});
+	}
+</script>
   </body>
 </html>
