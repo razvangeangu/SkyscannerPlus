@@ -15,6 +15,8 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
+    <script src="js/annyang.min.js"></script>
+
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
 
@@ -169,9 +171,33 @@
       </div>
     </div>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
+
     <script>
+    "use strict";
+    if (annyang) {
+      var hello = function() {
+        alert("it worked!!");
+      };
+
+      var getStarted = function() {
+        window.location.href = 'https://github.com/TalAter/annyang';
+      }
+      var commands = {
+        'hello (there)':        hello,
+      };
+      annyang.debug();
+      annyang.addCommands(commands);
+      annyang.setLanguage('en');
+      annyang.start();
+
+      // Define a stylesheet for KITT to use
+      SpeechKITT.setStylesheet('//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat.css');
+
+      // Render KITT's interface
+      SpeechKITT.vroom(); // SpeechKITT.render() does the same thing, but isn't as much fun!
+    }
+    </script>
 
     <script>
     function tbd() {
