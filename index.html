@@ -52,7 +52,7 @@
   <body>
     <script type="text/javascript" src="js/jRoll.js"></script>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background: #34353e; border:none; ">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -64,7 +64,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active" style="background: #34353e; border:none;"><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
             <!-- <li><a href="#contact">Contact</a></li> -->
           </ul>
@@ -76,29 +76,30 @@
 
       <div class="starter-template">
         <h1><img src="img/logo.png" width="40%"/></h1>
-        <p class="lead" id="motto">Looking for an awesome destination? Just let us know what you want <br> e.g.: I want to travel from London to Barcelona</p>
+        <p class="lead" id="motto" style="padding-top: 20px;">Looking for an awesome destination? Just let us know what you want <br> e.g.: I want to travel from London to Barcelona</p>
       </div>
 
-      <ul id="ulFather" class="list-group">
-        <li id="q1" class="list-group-item" style="display: none;"></li>
-        <li id="a1" class="list-group-item" style="display: none;"></li>
-        <li id="q2" class="list-group-item" style="display: none;"></li>
-        <li id="a2" class="list-group-item" style="display: none;"></li>
-        <li id="q3" class="list-group-item" style="display: none;"></li>
-        <li id="a3" class="list-group-item" style="display: none;"></li>
+      <center><ul id="ulFather" class="list-group">
+        <li id="q1" class="list-group-item" style="display: none; background: #000; background-color: rgba(256,256,256,0.6); font-weight: bold; color: #000; opacity: 1; width: 600px;"></li>
+        <li id="a1" class="list-group-item" style="display: none; background: #000; background-color: rgba(256,256,256,0.6); font-weight: bold; color: #000; opacity: 1; width: 600px;"></li>
+        <li id="q2" class="list-group-item" style="display: none; background: #000; background-color: rgba(256,256,256,0.6); font-weight: bold; color: #000; opacity: 1; width: 600px;"></li>
+        <li id="a2" class="list-group-item" style="display: none; background: #000; background-color: rgba(256,256,256,0.6); font-weight: bold; color: #000; opacity: 1; width: 600px;"></li>
+        <li id="q3" class="list-group-item" style="display: none; background: #000; background-color: rgba(256,256,256,0.6); font-weight: bold; color: #000; opacity: 1; width: 600px;"></li>
+        <li id="a3" class="list-group-item" style="display: none; background: #000; background-color: rgba(256,256,256,0.6); font-weight: bold; color: #000; opacity: 1; width: 600px;"></li>
       </ul>
 
-      <div class="text centre">
+      <div class="text center">
         <center><div class="input-group col-xs-4">
-            <input id="questionText" type="text" class="form-control inputlg" placeholder="Your answer..." style="z-index: 1; position: relative; padding-right: 0; padding-left: 0; border: none; border-radius: 5px; font-size: 1.2em; width: 500px ; background: white; background-color: rgba(256, 256, 256, 0.3); box-shadow: none !important; resize: none; color: #fff;">
-            <span class="input-group-btn">
-              <button id="myButton" class="btn btn-default" type="button" onclick="enableAnswer()" >Go!</button>
+            <input id="questionText" type="text" class="form-control input-lg" placeholder="Your answer..." style="z-index: 1; position: relative; padding-right: 10; padding-left: 10; border: none; border-radius: 10px; font-size: 20px; background: white; background-color: rgba(256, 256, 256, 0.3); box-shadow: none !important; resize: none; color: #fff; width: 600; height: 50;">
+            <!-- <span class="input-group-btn"> -->
+          <!-- <div><button id="myButton" onclick="enableAnswer()"></i></button></div> -->
+            <span class="input-group-btn"><button id="myButton" type="button" class="btn btn-info btn-xl" onclick="enableAnswer()" style="height: 45px; left: 5; border-radius: 10px; background-color: #5be3ee; border: none;">GO <span class="glyphicon glyphicon-plane"></span></button></span>
+              <!-- <button id="myButton" class="btn btn-default" type="button" onclick="enableAnswer()" >Go!</button> -->
               <!-- <input onkeypress="enableAnswer()"> -->
-            </span>
+            <!-- </span> -->
           </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
       </div><!-- /.row -->
-
     </div><!-- /.container -->
 
     <!-- Nuta scrie intre liniile acestea -->
@@ -115,27 +116,29 @@
     var i = 1;
     var qIndex = 'q' + i, aIndex = 'a' + i;
       function enableAnswer() {
-        // $.post('https://skyscannerplus.herokuapp.com/hello', null, function() {
-        //         console.log("works on every enter");
-        //     });
         makeCorsRequest(i);
-
         qIndex = 'q' + i;
         aIndex = 'a' + i;
+
         if (i > 3) {
             document.getElementById("q1").innerHTML = document.getElementById("q2").innerHTML;
             document.getElementById("q2").innerHTML = document.getElementById("q3").innerHTML;
-            i = 3;
+            document.getElementById("q3").innerHTML = document.getElementById("questionText").value;
+
+            document.getElementById("a1").innerHTML = document.getElementById("a2").innerHTML;
+            document.getElementById("a2").innerHTML = document.getElementById("a3").innerHTML;
+            document.getElementById("questionText").value = "";
+        } else {
+            document.getElementById(qIndex).style.display = "block";
+            document.getElementById(qIndex).innerHTML = document.getElementById("questionText").value;
+            document.getElementById(aIndex).style.display = "block";
+            document.getElementById(aIndex).style.background = "#f1f1f1";
+            document.getElementById(aIndex).style.color= "#5be3ee";
+            document.getElementById("questionText").value = "";
+            document.getElementById("loader").style.display = "none";
+            i += 1;
         }
-        document.getElementById(qIndex).style.display = "block";
-        document.getElementById(qIndex).innerHTML = document.getElementById("questionText").value;
-        document.getElementById(aIndex).style.display = "block";
-        document.getElementById(aIndex).style.background = "#f1f1f1";
-        document.getElementById(aIndex).style.color= "#5be3ee";
-        document.getElementById("questionText").value = "";
-        document.getElementById("loader").style.display = "none";
-        i += 1;
-            }
+      }
     </script>
 
     <!-- boxuri pentru rezultate -->
@@ -217,5 +220,11 @@
     <script src="js/bootstrap.min.js"></script>
 
     <center><div class="loader" id="loader"></div>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" style="background: none; border: none;">
+      <div class="container text-center">
+          <p class="navbar-text col-md-12 col-sm-12 col-xs-12" style="color: #34353e;">&copy; 2016 <b>SMARTANA</b> <br> All rights reserved | MIT License</p>
+      </div>
+    </nav>
   </body>
 </html>
